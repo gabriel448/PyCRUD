@@ -1,40 +1,12 @@
 import json
 import os
+from functions import check, salvar, load
+from models import Clientes
+
 CAMINHO_ARQUIVO = 'zclientes.json'
 
-class Clientes:
-    def __init__(self,name, age, height):
-        self.nome = name
-        self.idade = age
-        self.altura = height
-
-def salvar(cadastros, caminho):
-    with open (caminho, 'w', encoding='utf-8') as arquivo:
-        json.dump(cadastros, arquivo, ensure_ascii = False, indent = 2)
-    return
-
-def carregar(cadastros, caminho):
-    try:
-        with open(caminho, 'r', encoding='utf-8') as arquivo:
-            dados = json.load(arquivo)
-        return dados
-    except FileNotFoundError:
-        salvar(cadastros, caminho)
-        return carregar(cadastros, caminho)
-
-def check(age, height):
-    try:
-        x = int(age)
-        y = float(height)
-        z = int(search_code)
-        return False
-    except:
-        return True
-        
-    
-
 if __name__ == '__main__':
-    cadastros = carregar({}, CAMINHO_ARQUIVO)
+    cadastros = load({}, CAMINHO_ARQUIVO)
 
     clients_count = None
 
@@ -46,15 +18,14 @@ if __name__ == '__main__':
         search_code = input('Digite um codigo de busca para este cliente: ')
         client_name = input('Digite o nome do cliente: ')
         client_age = input('Digite a idade do cliente: ')
-        client_height = input('Digite a altura(metros) do cliente: ')
+        client_email = input('Digite o email do cliente: ')
+        client_tel = input('Digite o telefone do cliente com o DDD: ')
 
-        if check(client_age, client_height):
-            os.system('cls')
-            print('altura, idade ou codigo de busca invalido(s).','Verifique se os mesmos sao numeros.', sep='\n')
-            print()
+        if not check(client_age, client_email, client_tel, search_code):
             continue
-
-        cliente = Clientes(f'{client_name}',int(client_age), float(client_height))
+        
+        tel_format = tel_format(client_tel)
+        cliente = Clientes(f'{client_name}',int(client_age), f'{client_email}', f'{tel_format}')
         cadastros[f'{search_code}'] = vars(cliente)
         salvar(cadastros, CAMINHO_ARQUIVO)
         i += 1

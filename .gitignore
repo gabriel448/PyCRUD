@@ -1,0 +1,118 @@
+
+# --- Ambientes Virtuais ---
+# Ignore a pasta do ambiente virtual. O nome pode variar (ex: venv, .venv, env, .env).
+# Adicione o nome da sua pasta de ambiente virtual aqui.
+.venv/
+venv/
+env/
+.env/
+*/.env
+
+# --- Arquivos de Cache e Bytecode do Python ---
+# Arquivos de bytecode compilado e caches.
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+
+# --- Ovos (Eggs) e Distribuições ---
+# Formatos de distribuição antigos e artefatos de build.
+.eggs/
+*.egg-info/
+*.egg
+dist/
+build/
+wheels/
+parts/
+sdist/
+var/
+
+# --- Logs de Instalação do Pip ---
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- Bibliotecas C Compiladas ---
+# Extensões C compiladas.
+*.so
+
+# --- Relatórios de Testes e Cobertura ---
+# Arquivos gerados por ferramentas de teste e cobertura.
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+nosetests.xml
+coverage.xml
+
+# --- Jupyter Notebook ---
+# Arquivos de checkpoint do Jupyter Notebook.
+.ipynb_checkpoints
+
+# --- Configurações de IDEs e Editores ---
+# Arquivos de configuração específicos do ambiente de desenvolvimento.
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# PyCharm
+.idea/
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# --- Arquivos de Sistema Operacional ---
+# Arquivos de metadados de sistema operacional.
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Frameworks Específicos ---
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask
+instance/
+.webassets-cache
+
+# Scrapy
+.scrapy
+
+# --- Documentação ---
+# Arquivos gerados por ferramentas de documentação como o Sphinx.
+docs/_build/
+
+# --- Arquivos de Ambiente ---
+# Ignore arquivos de ambiente que podem conter chaves de API e outras informações sensíveis.
+# É uma boa prática usar um arquivo .env.example versionado.
+.env
+.env.*
+!.env.example
+
+# --- Outros ---
+# Adicione aqui outros arquivos e pastas que não devem ser versionados.
+# Por exemplo, arquivos de bancos de dados locais, uploads de mídia, etc.
+/media/
+*.sqlite3
+*.db
