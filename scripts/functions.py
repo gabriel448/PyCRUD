@@ -1,6 +1,6 @@
 import json
 import os
-from dict import CAMINHO_ARQUIVO
+from dir import CAMINHO_ARQUIVO
 
 def salvar(cadastros, caminho):
     with open (caminho, 'w', encoding='utf-8') as arquivo:

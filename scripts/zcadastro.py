@@ -1,7 +1,7 @@
 import os
 from functions import check, salvar, load, tel_format
 from models import Clientes
-from dict import CAMINHO_ARQUIVO
+from dir import CAMINHO_ARQUIVO
 
 if __name__ == '__main__':
     cadastros = load({}, CAMINHO_ARQUIVO)
