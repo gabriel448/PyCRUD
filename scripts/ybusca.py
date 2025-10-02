@@ -1,4 +1,4 @@
-from zcadastro import CAMINHO_ARQUIVO
+from dict import CAMINHO_ARQUIVO
 import json
 import os
 def client_data(dict):

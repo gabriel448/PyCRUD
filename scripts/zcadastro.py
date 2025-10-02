@@ -1,9 +1,7 @@
-import json
 import os
-from functions import check, salvar, load
+from functions import check, salvar, load, tel_format
 from models import Clientes
-
-CAMINHO_ARQUIVO = 'zclientes.json'
+from dict import CAMINHO_ARQUIVO
 
 if __name__ == '__main__':
     cadastros = load({}, CAMINHO_ARQUIVO)

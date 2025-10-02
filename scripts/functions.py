@@ -1,5 +1,6 @@
 import json
 import os
+from dict import CAMINHO_ARQUIVO
 
 def salvar(cadastros, caminho):
     with open (caminho, 'w', encoding='utf-8') as arquivo:
@@ -20,7 +21,7 @@ def tel_format(tel):
     remove = '-()'
     tabela = str.maketrans("", "", remove)
     telefone_clean = telefone.translate(tabela)
-    tel_format = f"({telefone_clean[:2]}) {telefone_clean[2:6]}-{telefone_clean[6:]}"
+    tel_format = f"({telefone_clean[:2]}) {telefone_clean[2:7]}-{telefone_clean[7:]}"
     return tel_format
 
 def error(mensagem):
@@ -45,7 +46,7 @@ def check(age, email, tel, search_code):
     
     #telefone
     telefone = tel.strip()
-    remove = '-()'
+    remove = '-() '
     tabela = str.maketrans("", "", remove)
     telefone_clean = telefone.translate(tabela)
     try:
@@ -54,7 +55,7 @@ def check(age, email, tel, search_code):
         error('telefone invalido')
         return False
     
-    if len(telefone) != 10:
+    if len(telefone) < 10 or len(telefone) > 13:
         error('telefone invalido')
         return False
     
@@ -65,5 +66,3 @@ def check(age, email, tel, search_code):
             error('Um cliente ja possui esse codigo')
             return False
     return True
-
-from zcadastro import CAMINHO_ARQUIVO
