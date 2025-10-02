@@ -3,7 +3,7 @@ from functions import check, salvar, load, tel_format
 from models import Clientes
 from dir import CAMINHO_ARQUIVO
 
-if __name__ == '__main__':
+def cadastrar():
     cadastros = load({}, CAMINHO_ARQUIVO)
 
     clients_count = None
@@ -13,7 +13,7 @@ if __name__ == '__main__':
         clients_count = len(cadastros.keys())
         print(f'Bem-Vindo ao cadastro de clientes!      clientes cadastrados: {clients_count}')
         print()
-        search_code = input('Digite um codigo de busca para este cliente: ')
+        search_code = input('Digite um codigo de busca para este cliente: ').strip()
         client_name = input('Digite o nome do cliente: ')
         client_age = input('Digite a idade do cliente: ')
         client_email = input('Digite o email do cliente: ')
@@ -22,8 +22,8 @@ if __name__ == '__main__':
         if not check(client_age, client_email, client_tel, search_code):
             continue
         
-        tel_format = tel_format(client_tel)
-        cliente = Clientes(f'{client_name}',int(client_age), f'{client_email}', f'{tel_format}')
+        tel_formatado = tel_format(client_tel)
+        cliente = Clientes(f'{client_name}',int(client_age), f'{client_email}', f'{tel_formatado}')
         cadastros[f'{search_code}'] = vars(cliente)
         salvar(cadastros, CAMINHO_ARQUIVO)
         i += 1
@@ -44,6 +44,6 @@ if __name__ == '__main__':
             os.system('cls')
             print('comando invalido.')
             continue
-
+    return
     
     

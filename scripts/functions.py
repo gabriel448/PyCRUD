@@ -7,6 +7,17 @@ def salvar(cadastros, caminho):
         json.dump(cadastros, arquivo, ensure_ascii = False, indent = 2)
     return
 
+def salvar_update(caminho, code, update):
+    with open(caminho, 'r', encoding='utf-8') as arquivo:
+        cadastros = json.load(arquivo)
+
+    cadastros[code] = update
+
+    with open(caminho, 'w', encoding='utf-8') as arquivo:
+        json.dump(cadastros, arquivo, ensure_ascii=False, indent=2)
+
+    return
+
 def load(cadastros, caminho):
     try:
         with open(caminho, 'r', encoding='utf-8') as arquivo:
@@ -55,7 +66,7 @@ def check(age, email, tel, search_code):
         error('telefone invalido')
         return False
     
-    if len(telefone) < 10 or len(telefone) > 13:
+    if len(telefone_clean) < 10 or len(telefone_clean) > 13:
         error('telefone invalido')
         return False
     
