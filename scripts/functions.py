@@ -7,6 +7,17 @@ def salvar(cadastros, caminho):
         json.dump(cadastros, arquivo, ensure_ascii = False, indent = 2)
     return
 
+def delete(caminho, code):
+    with open(caminho, 'r', encoding='utf-8') as arquivo:
+        cadastros = json.load(arquivo)
+
+    del cadastros[code]
+
+    with open(caminho, 'w', encoding='utf-8') as arquivo:
+        json.dump(cadastros, arquivo, ensure_ascii=False, indent=2)
+
+    return
+
 def salvar_update(caminho, code, update):
     with open(caminho, 'r', encoding='utf-8') as arquivo:
         cadastros = json.load(arquivo)
