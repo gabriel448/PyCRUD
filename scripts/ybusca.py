@@ -1,16 +1,17 @@
 from dir import CAMINHO_ARQUIVO
 import json
 import os
+
+def carregar(caminho):
+        with open(caminho, 'r', encoding='utf-8')as arquivo:
+            dados = json.load(arquivo)
+        return dados
+
 def buscar():
     def client_data(dict):
         for chave, valor in dict.items():
             print(f'{chave}: {valor}')
         return
-
-    def carregar(caminho):
-        with open(caminho, 'r', encoding='utf-8')as arquivo:
-            dados = json.load(arquivo)
-        return dados
 
     clientes = carregar(CAMINHO_ARQUIVO)
 
@@ -41,3 +42,9 @@ def buscar():
             break
     return
 
+# --- Versão GUI ---
+def buscar_gui(code):
+    clientes = carregar(CAMINHO_ARQUIVO)
+    if code not in clientes:
+        return False, "Código de cliente inexistente."
+    return True, clientes[code]

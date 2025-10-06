@@ -54,7 +54,7 @@ def check(age, email, tel, search_code):
     try:
         #idade
         x = int(age)
-        if x < 0 or x > 150:
+        if x <= 0 or x > 150:
             error('Idade invalida, digite uma idade entre 0 e 150')
             return False
     except:
@@ -88,3 +88,37 @@ def check(age, email, tel, search_code):
             error('Um cliente ja possui esse codigo')
             return False
     return True
+
+def check_gui(age, email, tel, search_code):
+    try:
+        #idade
+        x = int(age)
+        if x <= 0 or x > 150:
+            return False, 'Idade invalida, digite uma idade entre 0 e 150'
+    except:
+        return False, 'Idade Invalida, use caracteres validos'
+    #email
+    y = '@' in email.strip() and '.com' in email.strip()
+    if not y:
+        error('Email invalido')
+        return False
+    
+    #telefone
+    telefone = tel.strip()
+    remove = '-() '
+    tabela = str.maketrans("", "", remove)
+    telefone_clean = telefone.translate(tabela)
+    try:
+        int(telefone_clean)
+    except:
+        return False, 'telefone invalido'
+    
+    if len(telefone_clean) < 10 or len(telefone_clean) > 13:
+        return False, 'telefone invalido'
+    
+    #search_code
+    cadastros = load({},CAMINHO_ARQUIVO)
+    for code in cadastros.keys():
+        if code == search_code:
+            return False, 'Um cliente ja possui esse codigo'
+    return True, None

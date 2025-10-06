@@ -83,3 +83,26 @@ def update():
             os.system('cls')
             print('Codigo de cadastro inexistente')
     return
+
+# --- Versão GUI ---
+def update_gui(code, field, new_value):
+    cadastros = load({}, CAMINHO_ARQUIVO)
+
+    if code not in cadastros:
+        return False, "Código de cadastro inexistente."
+
+    user = cadastros[code]
+    campos = {"nome": "nome", "idade": "idade", "email": "email", "tel": "tel"}
+
+    if field not in campos:
+        return False, "Campo inválido. Use: nome, idade, email ou tel."
+
+    update = data_update(user, campos[field], new_value)
+
+    if not check(update['idade'], update['email'], update['tel'], None):
+        return False, "Dados inválidos."
+
+    update['idade'] = int(update['idade'])
+    salvar_update(CAMINHO_ARQUIVO, code, update)
+
+    return True, f'Cadastro de "{update["nome"]}" atualizado com sucesso.'

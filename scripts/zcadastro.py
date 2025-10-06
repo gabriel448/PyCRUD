@@ -1,5 +1,5 @@
 import os
-from functions import check, salvar, load, tel_format
+from functions import check, salvar, load, tel_format,check_gui
 from models import Clientes
 from dir import CAMINHO_ARQUIVO
 
@@ -45,5 +45,19 @@ def cadastrar():
             print('comando invalido.')
             continue
     return
-    
+
+# versão para GUI
+def cadastrar_gui(search_code, client_name, client_age, client_email, client_tel):
+    cadastros = load({}, CAMINHO_ARQUIVO)
+    check, msg = check_gui(client_age, client_email, client_tel, search_code)
+    if not check:
+        return False, msg
+
+    tel_formatado = tel_format(client_tel)
+    cliente = Clientes(f'{client_name}', int(client_age), f'{client_email}', f'{tel_formatado}')
+    cadastros[f'{search_code}'] = vars(cliente)
+    salvar(cadastros, CAMINHO_ARQUIVO)
+
+    return True, f'Cliente "{client_name}" cadastrado com sucesso.'
+
     

@@ -34,3 +34,12 @@ def deletar():
             os.system('cls')
             print('Codigo de cadastro inexistente')
     return
+
+# --- Versão GUI ---
+def deletar_gui(code):
+    cadastros = load({}, CAMINHO_ARQUIVO)
+    if code not in cadastros:
+        return False, "Código inexistente."
+    cliente = cadastros[code]['nome']
+    delete(CAMINHO_ARQUIVO, code)
+    return True, f'Cadastro de "{cliente}" excluído com sucesso.'
